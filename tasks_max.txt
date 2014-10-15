@@ -1,0 +1,32 @@
+Allgemein
+
+am Konzept mitschrauben (Gildensystem ausarbeiten, Map-Unterteilung, evtl. Spielerklassen, Transfer zwischen public & premium Server etc.)
+Langfristig sinnvolles Konzept zur Monetisierung:
+generell Player durch features & aktive community an server binden
+premium features auf premium server die ausreichen um nen vernünftigen Anteil der player zum Premium kaufen zu bewegen
+public server vorher launchen um userbase aufzubauen bis Premium gelauncht wird
+tweaken von user satisfaction zur userbindung aber Anreiz von premium
+
+
+Website
+
+Fritz is Web-Obderdödel, Max hilft
+Konzept Datenaustausch MC Server <> Website (shared MySQL DB?)
+Inhalte Website definieren u. unterteilen:
+Map mit Sektorinfos (Fraktionszugehörigkeit, Stadt ja/nein, Ressourcen verfügbar etc)
+Login für user account (tied to mc account name evtl?) mit premium status und payment options für premium
+player specific infos (Fraktion, Fraktionsstatus, ingame currency, evtl noch last login & position etc?)
+Welche Askepte der Spielerverwaltung über Website, welche nur aufm mc server (z.B. Fraktion gründen/joinen/wechseln, Transaktionen von ingame cash zu anderen und so)?
+
+
+mc Server
+
+Server features für public & premium genau definieren
+server features pro server logisch in plugins unterteilen & Arbeitsverteilung im Team
+Datenstruktur MC Server Daten für DB definieren (map Daten, Fraktionsinfos, player details)
+für mod dev: bukkit & FTP serverseitig, eclipse + bukkit plugin & github clientseitig
+plugin für ingame currency -> modular basteln für weitere Daten wie z.B. reputation oder so
+plugin Kompatibilität zu anderen plugins aka public Methoden für Datenabfrage & Änderungen (Konkretes Beispiel: Player kauft im Shop items, shop plugin checkt ob genug cur für Transaktion vorhanden ist, shop plugin instructed cur plugin $amount abzuziehen für Transaktion)
+alle Transaktionen zumindest anfangs sinnvoll loggen für debugging
+pullen und pushen von benötigten bzw geupdateten Playerdaten plugin <> DB (changes evtl cachen und in Intervallen pushen um traffic overhead klein zu halten)
+vor Änderungen pushen nach externen Änderungen der table checken (z.B. Echtgeld-currency, wenn user currency kauft und $tool den Datensatz anpasst, erst Daten nach solchen amendments checken bevor pushen weil sonst overwrite)
